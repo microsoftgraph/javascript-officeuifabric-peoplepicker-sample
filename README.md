@@ -94,7 +94,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://op
 
 ## Additional resources
 
-- [Other Microsoft Graph samples](https://github.com/MicrosofGraph?utf8=%E2%9C%93&query=-Sample)
+- [Other Microsoft Graph samples](https://github.com/microsoftgraph?utf8=%E2%9C%93&q=sample)
 - [Microsoft Graph overview](https://graph.microsoft.io)
 
 ## Copyright
