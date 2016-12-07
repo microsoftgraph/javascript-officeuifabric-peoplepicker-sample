@@ -16,7 +16,7 @@ This sample demonstrates how to populate an [Office UI Fabric JS PeoplePicker c
 
 In addition, the sample uses the [Office JavaScript API Helpers](https://github.com/OfficeDev/office-js-helpers) for authentication. This helper library provides a way of authenticating users to the [v2 authentication endpoint](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview), which enables developers to write a single code flow that handles authentication for both work or school and personal accounts.
 
- > **Note** The authentication code the uses the Office Javascript API Helper for authentication currently works only with Chrome and Firefox browsers. This is due to a known open bug that is being tracked in [this issue](https://github.com/OfficeDev/office-js-helpers/issues/5). You can use other libraries, such as [HelloJS](http://adodson.com/hello.js/), to get an access token from the [v2 authentication endpoint](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview) that you can use to create a Microsoft Graph client with the Microsoft Graph Javascript SDK.
+ > **Note** The authentication code the uses the Office Javascript API Helper for authentication currently works only with Chrome and Firefox browsers. This is due to a known open bug that is being tracked in [this issue](https://github.com/OfficeDev/office-js-helpers/issues/5). You can use other libraries, such as [HelloJS](http://adodson.com/hello.js/), to get an access token from the [v2 authentication endpoint](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview) that you can use to create a Microsoft Graph client with the Microsoft Graph Javascript SDK.
 
 
 ## Prerequisites
