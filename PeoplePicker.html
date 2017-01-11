@@ -20,6 +20,7 @@
     <!-- Microsoft Graph JavaScript SDK -->
     <script type="text/javascript" src="msgraph-sdk-javascript/lib/graph-js-sdk-web.js"></script>
 
+
     <!-- Office JavaScript API Helpers (via CDN) -->
     <script src="https://unpkg.com/@microsoft/office-js-helpers/dist/office.helpers.min.js"></script>
 
@@ -27,7 +28,7 @@
   <body onload="getUsers()">
     <!-- Application content goes here -->
     <h1 id="header" class="ms-font-su">People Picker</h1>
-    <button onclick="authenticate();">Login</button>
+    <button id="authenticate">Login</button>
     <button onclick="window.location.reload();">Populate Picker</button>
     <pre class="response"></pre>
 
@@ -136,8 +137,7 @@
   var graphScopes = "User.Read Mail.Send User.ReadBasic.All";
 
   var authenticator = new OfficeHelpers.Authenticator();
-  function authenticate() {
-    
+  $('#authenticate').click(function() {
     // Register Microsoft endpoint by overriding default values
     authenticator.endpoints.registerMicrosoftAuth(clientId, {
         redirectUrl: redirectUrl,
@@ -151,9 +151,8 @@
           
         })
         .catch(OfficeHelpers.Utilities.log);
+  });
 
-
-      }
 
 
 </script>
@@ -183,23 +182,24 @@ function getUsers(){
     .version("beta")
     .top(4)
     .get()
-    .then((res) => {
+    .then(function(res){
 
       // Populate the text fields.
-        for (var i = 0; i < res.value.length; i++) {
-        var nameElement = nameElementBase.concat(i);
-        var emailElement = emailElementBase.concat(i);
-        var personaElement = personaElementBase.concat(i);
-        var displayName = res.value[i].displayName;
-        var emailAddress = res.value[i].userPrincipalName;
-        var userId = res.value[i].id;
+        var counter = 0;
+        res.value.forEach(function(userObject){
+        var nameElement = nameElementBase.concat(counter);
+        var emailElement = emailElementBase.concat(counter);
+        var personaElement = personaElementBase.concat(counter);
+        var displayName = userObject.displayName;
+        var emailAddress = userObject.userPrincipalName;
+        var userId = userObject.id;
         userArray.push(userId);
         document.getElementById(nameElement).innerHTML = displayName;
         document.getElementById(emailElement).innerHTML = emailAddress;
-    }
-
+        counter++;
+        });
     })
-    .then(() => {
+    .then(function(){
 
       // Retrieve user photos and populate the image fields.
       for (var i =0; i < userArray.length; i++){
