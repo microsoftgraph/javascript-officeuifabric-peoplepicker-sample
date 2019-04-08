@@ -28,36 +28,31 @@ This sample requires the following:  
   * A web server to host the HTML file. This server must support SSL requests.
   * A Microsoft [work or school account](https://dev.office.com/devprogram). This sample relies on a request to get the top 4 contacts for the current user. This request will work only with a work or school account.
   
-## Register the application
-
-1. Sign into the [Application Registration Portal](https://apps.dev.microsoft.com/) using either your personal or work or school account.
-
-2. Choose **Add an app**.
-
-3. Enter a name for the app, and choose **Create application**. 
-    
-   The registration page displays, listing the properties of your app.
-
-4. Copy the Application Id. This is the unique identifier for your app. 
-
-5. Under **Platforms**, choose **Add Platform**.
-
-6. Choose **Web**.
-
-7. Make sure the **Allow Implicit Flow** check box is selected, and enter *https://your host/PeoplePicker.html* as the Redirect URI. 
-
-   The **Allow Implicit Flow** option enables the hybrid flow. During authentication, this enables the app to receive both sign-in info (the id_token) and artifacts (in this case, an authorization code) that the app can use to obtain an access token.
-
-8. Choose **Save**.
+1. Navigate to the [Azure portal - App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page. 
+1. Select **New registration**. 
+1. When the **Register an application page** appears, enter your application's registration information: 
+    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `People Picker`. 
+    - In the **Supported account types** section, select **Accounts in any organizational directory**. 
+ 1. Under Redirect URI, set the first drop-down to Web and set the value to your hosted url e.g. 'https://localhost/PeoplePicker.html' 
+1. Select **Register** to create the application. 
+1. On the app **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the Visual Studio configuration file for this project. 
+1. In the list of pages for the app, select **Manifest**, and: 
+    - In the manifest editor, set the ``allowPublicClient`` property to **true** 
+    - Select **Save** in the bar above the manifest editor. 
+1. In the list of pages for the app, select **API permissions** 
+    - Click the **Add a permission** button and then, 
+    - Ensure that the **Microsoft APIs** tab is selected 
+    - In the *Commonly used Microsoft APIs* section, click on **Microsoft Graph** 
+    - In the **Delegated permissions** section, ensure that the right permissions are checked: **User.Read**,**Mail.Send**, **User.ReadBasic.All**,**People.Read** **People.Read.All** Use the search box if necessary. 
+    - Select the **Add permissions** button 
 
 ## Run the sample
 
 1. Open the PeoplePicker.html file in any text editor or IDE. Find these lines and populate them with the corresponding values for `clientId` (the application id you got when you registered the app) and `redirectUrl` (*https://your host/PeoplePicker.html*).
 
-    <pre>
+<pre>
     var clientId = "your application Id here";
-    var redirectUrl = "https://your host name here/PeoplePicker.html";
-    </pre>
+</pre>
 
 2. Copy or clone the [Microsoft Graph JavaScript SDK](https://github.com/microsoftgraph/msgraph-sdk-javascript) and make sure that this link to the SDK file is correct in your PeoplePicker.html file.
     <pre>
@@ -98,4 +93,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://op
 - [Microsoft Graph overview](https://graph.microsoft.io)
 
 ## Copyright
-Copyright (c) 2016 Microsoft. All rights reserved.
+Copyright (c) 2019 Microsoft. All rights reserved.
