@@ -52,7 +52,6 @@ This sample requires the following:  
 
 <pre>
     var clientId = "your application Id here";
-    var options = { redirectUri: "https://your host name here/PeoplePicker.html" };
 </pre>
 
 2. Copy or clone the [Microsoft Graph JavaScript SDK](https://github.com/microsoftgraph/msgraph-sdk-javascript) and make sure that this link to the SDK file is correct in your PeoplePicker.html file.

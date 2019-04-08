@@ -114,7 +114,7 @@
           <script>
             var clientId = "your application Id here";
             var graphScopes = ["User.Read Mail.Send User.ReadBasic.All People.Read People.Read.All"];
-            var options = { redirectUri: "https://your host name here/PeoplePicker.html" };
+            var options = { redirectUri: window.location };
             var authProvider = new MicrosoftGraph.MSALAuthenticationProvider(clientId, graphScopes, options);
         
             $('#authenticate').click(function () {
