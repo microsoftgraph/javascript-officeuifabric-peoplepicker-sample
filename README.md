@@ -50,10 +50,10 @@ This sample requires the following:  
 
 1. Open the PeoplePicker.html file in any text editor or IDE. Find these lines and populate them with the corresponding values for `clientId` (the application id you got when you registered the app) and `redirectUrl` (*https://your host/PeoplePicker.html*).
 
-    <pre>
+<pre>
     var clientId = "your application Id here";
-    var redirectUrl = "https://your host name here/PeoplePicker.html";
-    </pre>
+    var options = { redirectUri: "https://your host name here/PeoplePicker.html" };
+</pre>
 
 2. Copy or clone the [Microsoft Graph JavaScript SDK](https://github.com/microsoftgraph/msgraph-sdk-javascript) and make sure that this link to the SDK file is correct in your PeoplePicker.html file.
     <pre>
