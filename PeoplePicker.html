@@ -1,183 +1,230 @@
-﻿<!--  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+<!--  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
         See LICENSE in the source repository root for complete license information. -->
-        <!DOCTYPE html>
-        <html>        
-        <head>
-          <meta charset="utf-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <title>Office Fabric People Picker with Microsoft Graph</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1">
 
-          <!-- Optionally include jQuery to use Fabric's Component jQuery plugins -->
-          <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        
-          <!-- Fabric core -->
-          <link rel="stylesheet" href="fabric.min.css">
-          <link rel="stylesheet" href="fabric.components.min.css">
-          <script src="fabric.min.js"></script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Office Fabric People Picker with Microsoft Graph</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-          <!-- Microsoft Graph JavaScript SDK -->                
-          <script type="text/javascript" src="msgraph-sdk-javascript/lib/graph-js-sdk-web.js"></script> 
+    <!-- Optionally include jQuery to use Fabric's Component jQuery plugins -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-          <!-- Office JavaScript API Helpers (via CDN) -->
-          <script src="https://unpkg.com/@microsoft/office-js-helpers/dist/office.helpers.min.js"></script>
-          <script src="https://secure.aadcdn.microsoftonline-p.com/lib/0.2.4/js/msal.min.js"></script>          
-        </head>        
-        <body onload="getUsers()">
-          <!-- Application content goes here -->
-          <h1 id="header" class="ms-font-su">People Picker</h1>
-          <button id="authenticate">Login</button>
-          <button onclick="window.location.reload();">Populate Picker</button>
-          <pre class="response"></pre>        
-          <!-- People Picker sample code from documentation -->
-          <div class="ms-PeoplePicker">
-            <div class="ms-PeoplePicker-searchBox">
-              <div class="ms-TextField  ms-TextField--textFieldUnderlined ">        
-                <input class="ms-TextField-field" type="text" value="" placeholder="Select or enter an option">
+    <!-- Fabric core -->
+    <link rel="stylesheet" href="fabric.min.css">
+    <link rel="stylesheet" href="fabric.components.min.css">
+    <script src="fabric.min.js"></script>
+
+    <!-- Microsoft Graph JavaScript SDK -->
+    <script type="text/javascript" src="msgraph-sdk-javascript/lib/graph-js-sdk-web.js"></script>
+
+
+    <!-- Office JavaScript API Helpers (via CDN) -->
+    <script src="https://unpkg.com/@microsoft/office-js-helpers/dist/office.helpers.min.js"></script>
+
+  </head>
+  <body onload="getUsers()">
+    <!-- Application content goes here -->
+    <h1 id="header" class="ms-font-su">People Picker</h1>
+    <button id="authenticate">Login</button>
+    <button onclick="window.location.reload();">Populate Picker</button>
+    <pre class="response"></pre>
+
+
+<!-- People Picker sample code from documentation -->
+<div class="ms-PeoplePicker">
+  <div class="ms-PeoplePicker-searchBox">
+    
+    
+    <div class="ms-TextField  ms-TextField--textFieldUnderlined ">
+      
+      <input class="ms-TextField-field" type="text" value="" placeholder="Select or enter an option" >
+      
+      
+    </div>
+  </div>
+  <div class="ms-PeoplePicker-results">
+      <div id="result-group" class="ms-PeoplePicker-resultGroup">
+        <div class="ms-PeoplePicker-resultGroupTitle">
+          Contacts
+        </div>
+          <div class="ms-PeoplePicker-result " tabindex="1">
+            
+            
+            <div id="Persona0" class="ms-Persona
+                  ms-Persona--sm">
+              <div class="ms-Persona-imageArea">
+                <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
+                <img id="PersonaImage0" class="ms-Persona-image">
+              </div>
+              <div class="ms-Persona-details">
+                  <div id="PersonaName0" class="ms-Persona-primaryText"></div>
+                  <div id="PersonaEmail0" class="ms-Persona-secondaryText"></div>
               </div>
             </div>
-            <div class="ms-PeoplePicker-results">
-              <div id="result-group" class="ms-PeoplePicker-resultGroup">
-                <div class="ms-PeoplePicker-resultGroupTitle">
-                  Contacts
-                </div>
-                <div class="ms-PeoplePicker-result " tabindex="1">
-                  <div id="Persona0" class="ms-Persona
-                          ms-Persona--sm">
-                    <div class="ms-Persona-imageArea">
-                      <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
-                      <img id="PersonaImage0" class="ms-Persona-image">
-                    </div>
-                    <div class="ms-Persona-details">
-                      <div id="PersonaName0" class="ms-Persona-primaryText"></div>
-                      <div id="PersonaEmail0" class="ms-Persona-secondaryText"></div>
-                    </div>
-                  </div>
-                  <button class="ms-PeoplePicker-resultAction"><i class="ms-Icon ms-Icon--Clear"></i></button>
-                </div>
-                <div class="ms-PeoplePicker-result " tabindex="1">
-                  <div id="Persona1" class="ms-Persona
-                          ms-Persona--sm">
-                    <div class="ms-Persona-imageArea">
-                      <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
-                      <img id="PersonaImage1" class="ms-Persona-image">
-                    </div>
-                    <div class="ms-Persona-details">
-                      <div id="PersonaName1" class="ms-Persona-primaryText"></div>
-                      <div id="PersonaEmail1" class="ms-Persona-secondaryText"></div>
-                    </div>
-                  </div>
-                  <button class="ms-PeoplePicker-resultAction"><i class="ms-Icon ms-Icon--Clear"></i></button>
-                </div>
-                <div class="ms-PeoplePicker-result " tabindex="1">
-                  <div id="Persona2" class="ms-Persona
-                          ms-Persona--sm">
-                    <div class="ms-Persona-imageArea">
-                      <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
-                      <img id="PersonaImage2" class="ms-Persona-image">
-                    </div>
-                    <div class="ms-Persona-details">
-                      <div id="PersonaName2" class="ms-Persona-primaryText"></div>
-                      <div id="PersonaEmail2" class="ms-Persona-secondaryText"></div>
-                    </div>
-                  </div>
-                  <button class="ms-PeoplePicker-resultAction"><i class="ms-Icon ms-Icon--Clear"></i></button>
-                </div>
-                <div class="ms-PeoplePicker-result " tabindex="1">
-                  <div id="Persona3" class="ms-Persona
-                          ms-Persona--sm">
-                    <div class="ms-Persona-imageArea">
-                      <div class="ms-Persona-imageCircle">
-                        <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
-                        <img id="PersonaImage3" class="ms-Persona-image">
-                      </div>
-                    </div>
-                    <div class="ms-Persona-details">
-                      <div id="PersonaName3" class="ms-Persona-primaryText"></div>
-                      <div id="PersonaEmail3" class="ms-Persona-secondaryText"></div>
-                    </div>
-                  </div>
-                  <button class="ms-PeoplePicker-resultAction"><i class="ms-Icon ms-Icon--Clear"></i></button>
-                </div>        
+              <button class="ms-PeoplePicker-resultAction"><i class="ms-Icon ms-Icon--Clear"></i></button>
+          </div>
+          <div class="ms-PeoplePicker-result " tabindex="1">
+            
+            
+            <div id="Persona1" class="ms-Persona
+                  ms-Persona--sm">
+              <div class="ms-Persona-imageArea">
+                <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
+                <img id="PersonaImage1" class="ms-Persona-image">
+              </div>
+              <div class="ms-Persona-details">
+                  <div id="PersonaName1" class="ms-Persona-primaryText"></div>
+                  <div id="PersonaEmail1" class="ms-Persona-secondaryText"></div>
               </div>
             </div>
-          </div>        
-          <!-- Create a People Picker from the HTML elements -->
-          <script type="text/javascript">
-            var PeoplePickerElements = document.querySelectorAll(".ms-PeoplePicker");
-            for (var i = 0; i < PeoplePickerElements.length; i++) {
-              new fabric['PeoplePicker'](PeoplePickerElements[i]);
-            }
-          </script>       
-        
-          <!-- Authenticate with Office JS Helper -->
-          <script>
-            var clientId = "your application Id here";
-            var graphScopes = ["User.Read Mail.Send User.ReadBasic.All People.Read People.Read.All"];
-            var options = { redirectUri: window.location };
-            var authProvider = new MicrosoftGraph.MSALAuthenticationProvider(clientId, graphScopes, options);
-        
-            $('#authenticate').click(function () {
-              authProvider.getAccessToken().then(function (token) {});
-            });        
-          </script>
+              <button class="ms-PeoplePicker-resultAction"><i class="ms-Icon ms-Icon--Clear"></i></button>
+          </div>
+          <div class="ms-PeoplePicker-result " tabindex="1">
+            
+            
+            <div id="Persona2" class="ms-Persona
+                  ms-Persona--sm">
+              <div class="ms-Persona-imageArea">
+                <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
+                <img id="PersonaImage2" class="ms-Persona-image">
+              </div>
+              <div class="ms-Persona-details">
+                  <div id="PersonaName2" class="ms-Persona-primaryText"></div>
+                  <div id="PersonaEmail2" class="ms-Persona-secondaryText"></div>
+              </div>
+            </div>
+              <button class="ms-PeoplePicker-resultAction"><i class="ms-Icon ms-Icon--Clear"></i></button>
+          </div>
+          <div class="ms-PeoplePicker-result " tabindex="1">
+            
+            
+            <div id="Persona3" class="ms-Persona
+                  ms-Persona--sm">
+              <div class="ms-Persona-imageArea">
+              <div class="ms-Persona-imageCircle">
+                <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
+                <img id="PersonaImage3" class="ms-Persona-image">
+              </div>
+              </div>
+              <div class="ms-Persona-details">
+                  <div id="PersonaName3" class="ms-Persona-primaryText"></div>
+                  <div id="PersonaEmail3" class="ms-Persona-secondaryText"></div>
+              </div>
+            </div>
+              <button class="ms-PeoplePicker-resultAction"><i class="ms-Icon ms-Icon--Clear"></i></button>
+          </div> 
 
-          <script>        
-            var userArray = new Array();
-            var personaImageBase = "PersonaImage";
-            var nameElementBase = "PersonaName";
-            var emailElementBase = "PersonaEmail";
-            var personaElementBase = "Persona";
-        
-            function getUsers() {        
-              // Get the access token and create a Microsoft Graph client
-              var options = {
-                authProvider, // An instance created from previous step
-              };
-              var Client = MicrosoftGraph.Client;
-              var client = Client.initWithMiddleware(options);  
-              client
-                .api('me/people')
-                .version("beta")
-                .top(4)
-                .get()
-                .then(function (res) {        
-                  // Populate the text fields.
-                  var counter = 0;
-                  res.value.forEach(function (userObject) {
-                    var nameElement = nameElementBase.concat(counter);
-                    var emailElement = emailElementBase.concat(counter);
-                    var personaElement = personaElementBase.concat(counter);
-                    var displayName = userObject.displayName;          
-                    var emailAddress = userObject.mail || userObject.userPrincipalName;
-                    var userId = userObject.id;
-                    userArray.push(userId);
-                    document.getElementById(nameElement).innerHTML = displayName;
-                    document.getElementById(emailElement).innerHTML = emailAddress;
-                    counter++;
-                  });
-                })
-                .then(function () {        
-                  // Retrieve user photos and populate the image fields.
-                  for (var i = 0; i < userArray.length; i++) {
-                    (function (userId) {
-                      var personaImage = personaImageBase.concat(i);
-                      client
-                        .api('/users/' + userId + '/photo/$value')
-                        .responseType('blob')
-                        .header("Cache-Control", "no-cache")
-                        .get((err, res, rawResponse) => {
-                          var url = window.URL;
-                          var blobUrl = url.createObjectURL(rawResponse.xhr.response);
-                          document.getElementById(personaImage).setAttribute("src", blobUrl);
-                        });
-                    })(userArray[i]);
-                  }
-                })
-                .catch((err) => {
-                  console.log(err);
-                });        
-            }
-          </script>        
-        </body>        
-        </html>
+      </div>
+  </div>
+</div>
+
+<!-- Create a People Picker from the HTML elements -->
+<script type="text/javascript">
+  var PeoplePickerElements = document.querySelectorAll(".ms-PeoplePicker");
+  for(var i = 0; i < PeoplePickerElements.length; i++) {
+  new fabric['PeoplePicker'](PeoplePickerElements[i]);
+  }
+</script>
+
+
+<!-- Authenticate with Office JS Helper -->
+<script>
+  var clientId = "your application Id here";
+  var redirectUrl = "https://your host name here/PeoplePicker.html";
+  var graphScopes = "User.Read Mail.Send User.ReadBasic.All";
+
+  var authenticator = new OfficeHelpers.Authenticator();
+  $('#authenticate').click(function() {
+    // Register Microsoft endpoint by overriding default values
+    authenticator.endpoints.registerMicrosoftAuth(clientId, {
+        redirectUrl: redirectUrl,
+        scope: graphScopes
+    });
+
+// Authenticate with the default Microsoft endpoint
+    authenticator
+        .authenticate(OfficeHelpers.DefaultEndpoints.Microsoft, true)
+        .then(function (token) {  
+          
+        })
+        .catch(OfficeHelpers.Utilities.log);
+  });
+
+
+
+</script>
+
+
+<script>
+  
+var userArray = new Array();
+var personaImageBase = "PersonaImage";
+var nameElementBase = "PersonaName";
+var emailElementBase = "PersonaEmail";
+var personaElementBase = "Persona";
+
+function getUsers(){
+
+  // Get the access token and create a Microsoft Graph client
+  var authObject = authenticator.tokens.get('Microsoft');
+  var accessToken = authObject.access_token;
+  const client = MicrosoftGraph.Client.init({
+    authProvider: (done) => {
+        done(null, accessToken); //first parameter takes an error if you can't get an access token
+    }
+    });
+
+    client
+    .api('me/people')
+    .version("beta")
+    .top(4)
+    .get()
+    .then(function(res){
+
+      // Populate the text fields.
+        var counter = 0;
+        res.value.forEach(function(userObject){
+        var nameElement = nameElementBase.concat(counter);
+        var emailElement = emailElementBase.concat(counter);
+        var personaElement = personaElementBase.concat(counter);
+        var displayName = userObject.displayName;
+        var emailAddress = userObject.userPrincipalName;
+        var userId = userObject.id;
+        userArray.push(userId);
+        document.getElementById(nameElement).innerHTML = displayName;
+        document.getElementById(emailElement).innerHTML = emailAddress;
+        counter++;
+        });
+    })
+    .then(function(){
+
+      // Retrieve user photos and populate the image fields.
+      for (var i =0; i < userArray.length; i++){
+        (function(userId) {        
+          var personaImage = personaImageBase.concat(i);
+          client
+          .api('/users/' + userId + '/photo/$value')
+          .responseType('blob')
+          .header("Cache-Control", "no-cache")
+          .get((err, res, rawResponse) => {
+            const url = window.URL;
+            const blobUrl = url.createObjectURL(rawResponse.xhr.response);
+            document.getElementById(personaImage).setAttribute("src", blobUrl);
+          });
+        })(userArray[i]);
+      }
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+  
+}
+
+
+</script>
+
+  </body>
+</html>
