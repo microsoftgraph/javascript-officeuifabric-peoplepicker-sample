@@ -94,4 +94,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://op
 - [Microsoft Graph overview](https://graph.microsoft.io)
 
 ## Copyright
-Copyright (c) 2016 Microsoft. All rights reserved.
+Copyright (c) 2019 Microsoft. All rights reserved.
