@@ -19,8 +19,7 @@
           <!-- Microsoft Graph JavaScript SDK -->                
           <script type="text/javascript" src="msgraph-sdk-javascript/lib/graph-js-sdk-web.js"></script> 
 
-          <!-- Office JavaScript API Helpers (via CDN) -->
-          <script src="https://unpkg.com/@microsoft/office-js-helpers/dist/office.helpers.min.js"></script>
+          <!-- MSAL -->
           <script src="https://secure.aadcdn.microsoftonline-p.com/lib/0.2.4/js/msal.min.js"></script>          
         </head>        
         <body onload="getUsers()">
@@ -110,7 +109,6 @@
             }
           </script>       
         
-          <!-- Authenticate with Office JS Helper -->
           <script>
             var clientId = "your application Id here";
             var graphScopes = ["User.Read Mail.Send User.ReadBasic.All People.Read People.Read.All"];

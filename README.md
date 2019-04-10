@@ -14,11 +14,6 @@
 
 This sample demonstrates how to populate an [Office UI Fabric JS PeoplePicker component](https://github.com/OfficeDev/office-ui-fabric-js/blob/master/ghdocs/components/PeoplePicker.md) with data retrieved from Microsoft Graph. It uses the [Microsoft Graph JavaScript SDK](https://github.com/microsoftgraph/msgraph-sdk-javascript) to work with data returned by Microsoft Graph. It consists of a single HTML file that contains all of the HTML and Javascript required to create a PeoplePicker component and request the Microsoft Graph data.
 
-In addition, the sample uses the [Office JavaScript API Helpers](https://github.com/OfficeDev/office-js-helpers) for authentication. This helper library provides a way of authenticating users to the [v2 authentication endpoint](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview), which enables developers to write a single code flow that handles authentication for both work or school and personal accounts.
-
- > **Note** The authentication code the uses the Office Javascript API Helper for authentication currently works only with Chrome and Firefox browsers. This is due to a known open bug that is being tracked in [this issue](https://github.com/OfficeDev/office-js-helpers/issues/5). You can use other libraries, such as [HelloJS](http://adodson.com/hello.js/), to get an access token from the [v2 authentication endpoint](https://azure.microsoft.com/en-us/documentation/articles/active-directory-appmodel-v2-overview) that you can use to create a Microsoft Graph client with the Microsoft Graph Javascript SDK.
-
-
 ## Prerequisites
 
 This sample requires the following:  
@@ -35,7 +30,7 @@ This sample requires the following:  
     - In the **Supported account types** section, select **Accounts in any organizational directory**. 
  1. Under Redirect URI, set the first drop-down to Web and set the value to your hosted url e.g. 'https://localhost/PeoplePicker.html' 
 1. Select **Register** to create the application. 
-1. On the app **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the Visual Studio configuration file for this project. 
+1. On the app **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the PeoplePicker.html 
 1. In the list of pages for the app, select **Manifest**, and: 
     - In the manifest editor, set the ``allowPublicClient`` property to **true** 
     - Select **Save** in the bar above the manifest editor. 
