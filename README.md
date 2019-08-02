@@ -1,3 +1,21 @@
+---
+page_type: sample
+products:
+- office-365
+- ms-graph
+languages:
+- javascript
+- html
+extensions:
+  contentType: samples
+  technologies:
+  - Microsoft Graph
+  - Office Fabric UI
+  - Office UI Fabric
+  services:
+  - Office 365
+  createdDate: 12/6/2016 3:58:50 PM
+---
 # Microsoft Graph Office UI Fabric JS PeoplePicker Sample
 
 ## Table of contents
