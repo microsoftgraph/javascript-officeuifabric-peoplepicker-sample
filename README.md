@@ -7,7 +7,7 @@ languages:
 - javascript
 - html
 extensions:
-  contentType: samples
+  contentType: samples 
   technologies:
   - Microsoft Graph
   - Office Fabric UI
