@@ -6,6 +6,7 @@ products:
 languages:
 - javascript
 - html
+description: "This sample demonstrates how to populate an Office UI Fabric JS PeoplePicker component with data retrieved from Microsoft Graph."
 extensions:
   contentType: samples 
   technologies:
