@@ -1,23 +1,11 @@
----
-page_type: sample
-products:
-- office-365
-- ms-graph
-languages:
-- javascript
-- html
-description: "This sample demonstrates how to populate an Office UI Fabric JS PeoplePicker component with data retrieved from Microsoft Graph."
-extensions:
-  contentType: samples 
-  technologies:
-  - Microsoft Graph
-  - Office Fabric UI
-  - Office UI Fabric
-  services:
-  - Office 365
-  createdDate: 12/6/2016 3:58:50 PM
----
-# Microsoft Graph Office UI Fabric JS PeoplePicker Sample
+# [ARCHIVED] Microsoft Graph Office UI Fabric JS PeoplePicker Sample
+
+
+## IMPORTANT
+
+**This project is being archived. As part of the archival process, we're closing all open issues and pull requests. For UI components designed to work with Microsoft Graph and React (as well as other web-based frameworks), see the [Microsoft Graph Toolkit](https://docs.microsoft.com/graph/toolkit/overview)**
+
+**You can continue to use this sample "as-is", but it won't be maintained moving forward. We apologize for any inconvenience.**
 
 ## Table of contents
 
